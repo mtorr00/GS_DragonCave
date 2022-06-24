@@ -18,7 +18,7 @@ public class caveGameDriver {
 		String input = "";
 
 		// to store the ending text from the following while loop
-		String ending = "";
+		String ending = ""; 
 
 		// Will loop until correct input
 		while (true) {
