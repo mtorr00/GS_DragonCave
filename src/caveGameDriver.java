@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class caveGameDriver {
@@ -15,35 +16,37 @@ public class caveGameDriver {
 
 		// User inputs being set up
 		Scanner userInput = new Scanner(System.in);
-		String input = "";
+		int input = 0;
 
 		// to store the ending text from the following while loop
 		String ending = ""; 
 
 		// Will loop until correct input
 		while (true) {
-			System.out.println("Which cave will you enter? (Enter 1 or 2)");
-			input = userInput.nextLine();
+			try {
+				System.out.println("Which cave will you enter? (Enter 1 or 2)");
+				input = userInput.nextInt();
 
 			// this if-elseif-else will both check for the correct input, as well as calling
 			// for the Dragon gameOutcome to
 			// setup the correct ending text for the game
-			if (input.equals("1")) {
-				ending = one.gameOutcome();
-				break;
-			} else if (input.equals("2")) {
-				ending = two.gameOutcome();
-				break;
-			} else {
+				if (input == 1) {
+					ending = one.gameOutcome();
+					break;
+				} else if (input == 2) {
+					ending = two.gameOutcome();
+					break;
+				}
+			} catch (InputMismatchException e) {
 				System.out.println("Incorrect input, please retry.");
 			}
 		}
-
 		// prints the game results
 		System.out.println(ending);
 
 		// ties up loose Scanner ends
 		userInput.close();
+		
 	}
 
 	// gameIntro method to hold the string so it doesn't clutter main()
